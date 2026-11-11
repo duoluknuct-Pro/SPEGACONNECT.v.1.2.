@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPEGACONNECT - Platform Jejaring Alumni, Karir, & Beasiswa Almamater</title>
+  <meta name="description" content="Wadah resmi komunikasi, kolaborasi karir profesional, dan penyaluran donasi beasiswa bagi seluruh angkatan alumni almamater.">
+  <link rel="canonical" href="https://username.github.io/spega-connect/index.html">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="SPEGACONNECT - Jejaring Resmi Alumni">
+  <meta property="og:description" content="Temukan rekan seangkatan, peluang karir internal, dan salurkan donasi beasiswa untuk adik kelas.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: 'hsl(221, 72%, 32%)',
+              navyHover: 'hsl(221, 72%, 26%)',
+              gold: 'hsl(43, 96%, 56%)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="flex flex-col min-h-screen bg-[#fdfdfd] text-slate-800" x-data="{ mobileNav: false }">
+
+  <!-- === HEADER PUBLIK PERSISTEN === -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo Brand -->
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-[#163b8c] text-white flex items-center justify-center font-bold shadow-md shadow-blue-900/10">
+          <i data-lucide="graduation-cap" class="w-7 h-7 text-[#f8af26]"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight text-[#163b8c] font-heading block leading-tight">SPEGACONNECT</span>
+          <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">Jejaring Resmi Alumni</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="index.html" class="text-[#163b8c] font-bold">Beranda</a>
+        <a href="tentang.html" class="hover:text-[#163b8c] transition-colors">Tentang Kami</a>
+        <a href="galeri.html" class="hover:text-[#163b8c] transition-colors">Galeri Kegiatan</a>
+        <a href="beasiswa.html" class="hover:text-[#163b8c] transition-colors">Program Beasiswa</a>
+        <a href="kontak.html" class="hover:text-[#163b8c] transition-colors">Kontak</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="app.html#/masuk" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-colors shadow-xs">
+          Masuk Akun
+        </a>
+        <a href="app.html#/daftar" class="px-5 py-2.5 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-xs font-bold transition-colors shadow-xs flex items-center gap-2">
+          <span>Gabung Alumni</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button @click="mobileNav = !mobileNav" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div x-show="mobileNav" class="md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-4 shadow-lg animate-fade-in" style="display: none;">
+      <div class="flex flex-col space-y-3 text-sm font-semibold text-slate-700">
+        <a href="index.html" class="text-[#163b8c]">Beranda</a>
+        <a href="tentang.html">Tentang Kami</a>
+        <a href="galeri.html">Galeri Kegiatan</a>
+        <a href="beasiswa.html">Program Beasiswa</a>
+        <a href="kontak.html">Kontak</a>
+      </div>
+      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+        <a href="app.html#/masuk" class="w-full py-2.5 rounded-xl border border-slate-200 text-center text-xs font-semibold text-slate-700">Masuk Akun</a>
+        <a href="app.html#/daftar" class="w-full py-2.5 rounded-xl bg-[#163b8c] text-center text-xs font-bold text-white">Gabung Alumni</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- === HERO SECTION === -->
+  <section class="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-b from-blue-50/50 via-white to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#163b8c] text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Wadah Silaturahmi & Kolaborasi Lintas Angkatan</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-slate-900 tracking-tight leading-[1.15]">
+            Terhubung Kembali dengan <span class="text-[#163b8c] underline decoration-[#f8af26] decoration-4 underline-offset-8">Almamater Tercinta</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+            SPEGACONNECT mempermudah temu kangen rekan seangkatan, pertukaran informasi bursa karir internal terkurasi, dan penyaluran donasi beasiswa secara transparan bagi adik kelas.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+            <a href="app.html#/daftar" class="px-7 py-3.5 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-sm font-bold shadow-lg shadow-blue-900/15 transition-all flex items-center justify-center gap-2">
+              <i data-lucide="user-plus" class="w-4 h-4"></i>
+              <span>Daftarkan Diri Anda</span>
+            </a>
+            <a href="app.html#/alumni" class="px-7 py-3.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-xs">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+              <span>Cari Rekan Alumni</span>
+            </a>
+          </div>
+
+          <!-- Indikator Kepercayaan -->
+          <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-6 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+              <span>Verifikasi Ijazah Resmi</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="lock" class="w-4 h-4 text-blue-600"></i>
+              <span>Privasi Kontak Terjamin</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="heart" class="w-4 h-4 text-amber-500"></i>
+              <span>Donasi 100% Tersalurkan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Card Graphic -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-6">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-[#163b8c] flex items-center justify-center font-bold">
+                  <i data-lucide="award" class="w-7 h-7 text-[#f8af26]"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 font-heading">Buku Induk Alumni</h4>
+                  <p class="text-xs text-slate-400">Data Kelulusan Terverifikasi</p>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">Terdaftar</span>
+            </div>
+
+            <!-- Mini List Alumni Dummy Preview -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs">DP</div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800 block">Dimas Pratama</span>
+                    <span class="text-[11px] text-slate-500">Angkatan 2012 • RPL</span>
+                  </div>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#f8af26] text-slate-900 font-bold">Terverifikasi</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs">SM</div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800 block">Sinta Maharani, S.Ak.</span>
+                    <span class="text-[11px] text-slate-500">Angkatan 2016 • Akuntansi</span>
+                  </div>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#f8af26] text-slate-900 font-bold">Terverifikasi</span>
+              </div>
+
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-xs">PA</div>
+                  <div>
+                    <span class="text-xs font-bold text-slate-800 block">Putri Anindita</span>
+                    <span class="text-[11px] text-slate-500">Angkatan 2008 • Bisnis</span>
+                  </div>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#f8af26] text-slate-900 font-bold">Terverifikasi</span>
+              </div>
+            </div>
+
+            <div class="pt-2 text-center">
+              <a href="app.html#/alumni" class="text-xs font-bold text-[#163b8c] hover:underline inline-flex items-center gap-1">
+                <span>Jelajahi Seluruh Direktori Alumni</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === STATISTIK UTAMA ALMAMATER === -->
+  <section class="py-12 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="p-4 space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold font-heading text-[#163b8c]">16+</div>
+          <p class="text-xs sm:text-sm font-semibold text-slate-500">Angkatan Kelulusan</p>
+        </div>
+        <div class="p-4 space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold font-heading text-emerald-600">60%</div>
+          <p class="text-xs sm:text-sm font-semibold text-slate-500">Alumni Terverifikasi</p>
+        </div>
+        <div class="p-4 space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold font-heading text-blue-600">Rp 28,1 Jt</div>
+          <p class="text-xs sm:text-sm font-semibold text-slate-500">Beasiswa Terkumpul</p>
+        </div>
+        <div class="p-4 space-y-1">
+          <div class="text-3xl sm:text-4xl font-extrabold font-heading text-[#f8af26]">100%</div>
+          <p class="text-xs sm:text-sm font-semibold text-slate-500">Aman & Terpercaya</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === TIGA LOWONGAN KERJA TERBARU === -->
+  <section class="py-16 bg-slate-50/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#163b8c] block mb-1">Bursa Karir Internal</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-slate-900">Peluang Karir dari Alumni</h2>
+        </div>
+        <a href="app.html#/lowongan" class="text-xs font-bold text-[#163b8c] hover:underline flex items-center gap-1">
+          <span>Lihat Semua Lowongan</span>
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Lowongan 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-[#163b8c]">MAGANG</span>
+              <span class="text-[11px] text-slate-400">Bandung / Hybrid</span>
+            </div>
+            <h3 class="text-base font-bold font-heading text-slate-900">Frontend Web Developer (Magang)</h3>
+            <p class="text-xs text-slate-500 font-medium">PT Nusantara Digital Inovasi</p>
+            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">Peluang magang 6 bulan untuk adik kelas almamater mendalami HTML5, Tailwind, dan JavaScript modern bersama senior engineer.</p>
+          </div>
+          <div class="pt-5 mt-4 border-t border-slate-100">
+            <a href="app.html#/lowongan" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-[#163b8c] hover:text-white text-slate-700 text-xs font-semibold transition-colors flex items-center justify-center gap-2">
+              <span>Buka Rincian Karir</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Lowongan 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700">PENUH WAKTU</span>
+              <span class="text-[11px] text-slate-400">Surabaya Pusat</span>
+            </div>
+            <h3 class="text-base font-bold font-heading text-slate-900">Staf Administrasi & Junior Auditor</h3>
+            <p class="text-xs text-slate-500 font-medium">KAP Wijaya & Rekan</p>
+            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">Dibutuhkan segera staf administrasi keuangan dan junior auditor fresh graduate jurusan Akuntansi atau Administrasi Bisnis.</p>
+          </div>
+          <div class="pt-5 mt-4 border-t border-slate-100">
+            <a href="app.html#/lowongan" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-[#163b8c] hover:text-white text-slate-700 text-xs font-semibold transition-colors flex items-center justify-center gap-2">
+              <span>Buka Rincian Karir</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Lowongan 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700">PENUH WAKTU</span>
+              <span class="text-[11px] text-slate-400">Kota Yogyakarta</span>
+            </div>
+            <h3 class="text-base font-bold font-heading text-slate-900">Manajer Operasional Gerai Kuliner</h3>
+            <p class="text-xs text-slate-500 font-medium">Dapur Anindita Nusantara</p>
+            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">Memimpin operasional harian 3 cabang gerai kuliner, memastikan standar kebersihan, efisiensi bahan baku, dan kepuasan pelanggan.</p>
+          </div>
+          <div class="pt-5 mt-4 border-t border-slate-100">
+            <a href="app.html#/lowongan" class="w-full py-2.5 rounded-xl bg-slate-50 hover:bg-[#163b8c] hover:text-white text-slate-700 text-xs font-semibold transition-colors flex items-center justify-center gap-2">
+              <span>Buka Rincian Karir</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === KAMPANYE BEASISWA AKTIF === -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-600 block">Saling Peduli Almamater</span>
+        <h2 class="text-3xl font-extrabold font-heading text-slate-900">Program Beasiswa & Fasilitas Siswa</h2>
+        <p class="text-sm text-slate-500">Salurkan sebagian rezeki Anda untuk memastikan tidak ada adik kelas yang putus sekolah karena kendala biaya.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Beasiswa 1 -->
+        <div class="bg-slate-50/80 rounded-3xl p-6 sm:p-8 border border-slate-100 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">AKTIF</span>
+              <span>Deadline: 31 Des 2026</span>
+            </div>
+            <h3 class="text-xl font-bold font-heading text-slate-900">Beasiswa SPP & Perlengkapan Adik Kelas 2026</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Penggalangan dana donasi alumni untuk mendukung SPP, buku pegangan, dan seragam sekolah adik-adik kelas yang berprestasi namun menghadapi kendala ekonomi keluarga.</p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs font-bold">
+              <span class="text-slate-800">Terkumpul: Rp 18.750.000</span>
+              <span class="text-slate-500">Target: Rp 50.000.000 (37%)</span>
+            </div>
+            <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 37%"></div>
+            </div>
+          </div>
+
+          <a href="app.html#/donasi" class="w-full py-3 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-xs font-bold text-center shadow-xs transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="heart" class="w-4 h-4 text-rose-300"></i>
+            <span>Salurkan Donasi Sekarang</span>
+          </a>
+        </div>
+
+        <!-- Beasiswa 2 -->
+        <div class="bg-slate-50/80 rounded-3xl p-6 sm:p-8 border border-slate-100 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-bold text-slate-500">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">AKTIF</span>
+              <span>Deadline: 30 Nov 2026</span>
+            </div>
+            <h3 class="text-xl font-bold font-heading text-slate-900">Dana Pengadaan Alat Praktik Lab RPL & Elektro</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Program revitalisasi fasilitas laboratorium almamater meliputi kit mikrokontroler, modul jaringan komputer, dan komponen elektronika agar adik kelas siap bersaing di industri teknologi modern.</p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex justify-between text-xs font-bold">
+              <span class="text-slate-800">Terkumpul: Rp 9.400.000</span>
+              <span class="text-slate-500">Target: Rp 25.000.000 (38%)</span>
+            </div>
+            <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+              <div class="bg-emerald-500 h-full rounded-full" style="width: 38%"></div>
+            </div>
+          </div>
+
+          <a href="app.html#/donasi" class="w-full py-3 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-xs font-bold text-center shadow-xs transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="heart" class="w-4 h-4 text-rose-300"></i>
+            <span>Salurkan Donasi Sekarang</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === CALL TO ACTION (CTA) === -->
+  <section class="py-16 bg-[#163b8c] text-white relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+      <h2 class="text-3xl sm:text-4xl font-extrabold font-heading">Siap Terhubung dengan Ribuan Rekan Alumni?</h2>
+      <p class="text-sm sm:text-base text-blue-100 max-w-2xl mx-auto leading-relaxed">
+        Pendaftaran mudah dan gratis. Lengkapi identitas almamater Anda dan jadilah bagian dari jejaring profesional terbesar sekolah kita.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <a href="app.html#/daftar" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#f8af26] hover:bg-amber-500 text-slate-900 text-sm font-bold shadow-lg transition-colors">
+          Daftar Akun Alumni
+        </a>
+        <a href="tentang.html" class="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/30 hover:bg-white/10 text-white text-sm font-semibold transition-colors">
+          Pelajari Profil Pengelola
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- === FOOTER PUBLIK PERSISTEN === -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
+        <!-- Info Brand -->
+        <div class="space-y-3 md:col-span-1">
+          <div class="flex items-center gap-2.5 text-white font-bold text-base font-heading">
+            <i data-lucide="graduation-cap" class="w-5 h-5 text-[#f8af26]"></i>
+            <span>SPEGACONNECT</span>
+          </div>
+          <p class="leading-relaxed text-slate-400">Platform resmi jejaring komunikasi alumni, informasi bursa karir terkurasi, dan penggalangan donasi beasiswa almamater.</p>
+        </div>
+
+        <!-- Menu Navigasi -->
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-200 block">Jelajahi Portal</span>
+          <ul class="space-y-1.5">
+            <li><a href="index.html" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="galeri.html" class="hover:text-white transition-colors">Galeri Kegiatan</a></li>
+            <li><a href="beasiswa.html" class="hover:text-white transition-colors">Program Beasiswa</a></li>
+            <li><a href="kontak.html" class="hover:text-white transition-colors">Hubungi Pengelola</a></li>
+          </ul>
+        </div>
+
+        <!-- Menu Member -->
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-200 block">Layanan Alumni</span>
+          <ul class="space-y-1.5">
+            <li><a href="app.html#/masuk" class="hover:text-white transition-colors">Masuk Akun</a></li>
+            <li><a href="app.html#/daftar" class="hover:text-white transition-colors">Pendaftaran Anggota</a></li>
+            <li><a href="app.html#/alumni" class="hover:text-white transition-colors">Direktori Alumni</a></li>
+            <li><a href="app.html#/lowongan" class="hover:text-white transition-colors">Bursa Kerja Internal</a></li>
+            <li><a href="app.html#/donasi" class="hover:text-white transition-colors">Salurkan Donasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Sekretariat -->
+        <div class="space-y-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-200 block">Sekretariat Alumni</span>
+          <p class="leading-relaxed">Gedung Pusat Informasi Alumni SPEGACONNECT<br>Jl. Pendidikan No. 1, Jawa Barat, Indonesia</p>
+          <p>Email: <a href="mailto:admin@spegaconnect.id" class="text-slate-300 hover:underline">admin@spegaconnect.id</a></p>
+          <p>WA Layanan: +62 812-3456-7890</p>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <p>&copy; 2026 Ikatan Alumni SPEGACONNECT. Hak cipta dilindungi undang-undang.</p>
+        <p>Dibangun tanpa biaya server berbayar menggunakan GitHub Pages & Google Workspace.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
