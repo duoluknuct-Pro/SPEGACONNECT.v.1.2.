@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Aplikasi SPEGACONNECT - Jejaring Alumni</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: 'hsl(221, 72%, 32%)',
+              navyHover: 'hsl(221, 72%, 26%)',
+              gold: 'hsl(43, 96%, 56%)',
+              secondary: 'hsl(210, 40%, 96%)',
+              textMain: 'hsl(222, 47%, 11%)',
+              textMuted: 'hsl(215, 16%, 40%)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Alpine.js CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="h-full flex flex-col font-sans text-slate-800 bg-[#fdfdfd]" x-data="{ mobileMenuOpen: false, userDropdownOpen: false, roleSwitcherOpen: false }">
+
+  <div class="flex-1 flex overflow-hidden">
+    <!-- === SIDEBAR DESKTOP PERSISTEN (Bab 4 & Bab 7) === -->
+    <aside class="hidden lg:flex lg:flex-col w-72 bg-white border-r border-slate-200/80 shrink-0 z-30 select-none">
+      <!-- Logo & App Header -->
+      <div class="h-18 px-6 border-b border-slate-100 flex items-center justify-between">
+        <a href="#/dashboard" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-[#163b8c] text-white flex items-center justify-center font-bold shadow-md shadow-blue-900/10">
+            <i data-lucide="graduation-cap" class="w-6 h-6 text-[#f8af26]"></i>
+          </div>
+          <div>
+            <span class="font-extrabold text-base tracking-tight text-[#163b8c] font-heading block leading-tight">SPEGACONNECT</span>
+            <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Jejaring Alumni Resmi</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Quick Role & Identity Switcher (Fase 1 Testing Tool) -->
+      <div class="p-4 mx-4 my-3 rounded-2xl bg-blue-50/70 border border-blue-100/80">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-blue-900 flex items-center gap-1">
+            <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+            <span>Mode Uji Coba:</span>
+          </span>
+          <span id="sidebar-role-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#163b8c] text-white">Alumni</span>
+        </div>
+        <select id="select-test-user" class="w-full h-8 px-2.5 rounded-xl border border-blue-200 text-xs font-semibold text-slate-800 bg-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+          <option value="usr-alumni-01">Dimas (Alumni Terverifikasi)</option>
+          <option value="usr-alumni-03">Rizky (Alumni Menunggu)</option>
+          <option value="usr-admin-01">Bambang (Admin Pengelola)</option>
+        </select>
+      </div>
+
+      <!-- Navigasi Menu Dinamis -->
+      <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto" id="sidebar-nav-container">
+        <!-- Rendered via JS -->
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="p-4 border-t border-slate-100 space-y-2">
+        <a href="index.html" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-[#163b8c] hover:bg-slate-50 transition-colors">
+          <i data-lucide="globe" class="w-4 h-4 text-slate-400"></i>
+          <span>Halaman Publik Website</span>
+        </a>
+        <a href="#/masuk" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors">
+          <i data-lucide="log-out" class="w-4 h-4 text-rose-500"></i>
+          <span>Keluar Sesi</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- === MAIN VIEWPORT WRAPPER === -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <!-- HEADER STICKY ATAS -->
+      <header class="h-16 bg-white border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between shrink-0 z-20">
+        <div class="flex items-center gap-3">
+          <!-- Mobile Menu Trigger -->
+          <button @click="mobileMenuOpen = true" class="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+          <h1 id="app-page-title" class="text-base sm:text-lg font-bold font-heading text-slate-900 truncate">
+            Dasbor Alumni
+          </h1>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Notification Bell with Count Badge -->
+          <a href="#/notifikasi" class="relative p-2.5 rounded-xl text-slate-600 hover:text-[#163b8c] hover:bg-slate-100 transition-colors" title="Pemberitahuan">
+            <i data-lucide="bell" class="w-5 h-5"></i>
+            <span id="header-unread-badge" class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center animate-badge-pulse">
+              2
+            </span>
+          </a>
+
+          <!-- User Dropdown Profile Menu -->
+          <div class="relative" @click.outside="userDropdownOpen = false">
+            <button @click="userDropdownOpen = !userDropdownOpen" class="flex items-center gap-2 p-1.5 rounded-2xl hover:bg-slate-100 transition-colors">
+              <div id="header-avatar-slot">
+                <!-- Rendered by JS -->
+              </div>
+              <div class="hidden sm:block text-left text-xs pr-1">
+                <span id="header-user-name" class="font-bold text-slate-800 block truncate max-w-[120px]">Dimas Pratama</span>
+                <span id="header-user-role" class="text-[10px] text-slate-400 font-medium block">Alumni</span>
+              </div>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
+            </button>
+
+            <!-- Dropdown Menu Box -->
+            <div x-show="userDropdownOpen" x-transition.origin.top.right class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 animate-fade-in">
+              <div class="px-4 py-2 border-b border-slate-100">
+                <p id="dropdown-user-name" class="text-xs font-bold text-slate-800 truncate">Dimas Pratama</p>
+                <p id="dropdown-user-email" class="text-[11px] text-slate-400 truncate">dimas.pratama@gmail.com</p>
+              </div>
+              <a href="#/profil" @click="userDropdownOpen = false" class="flex items-center gap-2.5 px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium">
+                <i data-lucide="user" class="w-4 h-4 text-slate-400"></i>
+                <span>Profil Saya</span>
+              </a>
+              <a href="#/pengaturan" @click="userDropdownOpen = false" class="flex items-center gap-2.5 px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium">
+                <i data-lucide="settings" class="w-4 h-4 text-slate-400"></i>
+                <span>Pengaturan Akun</span>
+              </a>
+              <a href="#/donasi/riwayat" @click="userDropdownOpen = false" class="flex items-center gap-2.5 px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 font-medium">
+                <i data-lucide="heart" class="w-4 h-4 text-slate-400"></i>
+                <span>Riwayat Donasi</span>
+              </a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="#/masuk" @click="userDropdownOpen = false" class="flex items-center gap-2.5 px-4 py-2 text-xs text-rose-600 hover:bg-rose-50 font-semibold">
+                <i data-lucide="log-out" class="w-4 h-4 text-rose-500"></i>
+                <span>Keluar</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN APP CONTENT VIEWPORT -->
+      <main class="flex-1 overflow-y-auto p-4 sm:p-8 pb-24 lg:pb-8">
+        <div id="app-main-content" class="max-w-6xl mx-auto">
+          <!-- Rendered by js/router.js -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- === MOBILE BOTTOM NAVIGATION BAR (Bab 4 & Bab 7) === -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-200/90 z-40 flex items-center justify-around px-2 shadow-lg safe-bottom" id="mobile-bottom-nav">
+    <!-- Rendered via JS based on current role -->
+  </nav>
+
+  <!-- === MOBILE OFFCANVAS DRAWER (Bab 4 & Bab 7) === -->
+  <div x-show="mobileMenuOpen" class="lg:hidden fixed inset-0 z-50 flex modal-backdrop animate-fade-in" style="display: none;">
+    <div class="bg-white w-72 max-w-[80vw] h-full shadow-2xl flex flex-col justify-between" @click.outside="mobileMenuOpen = false">
+      <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-[#163b8c] text-white flex items-center justify-center font-bold">
+            <i data-lucide="graduation-cap" class="w-5 h-5 text-[#f8af26]"></i>
+          </div>
+          <span class="font-bold text-sm font-heading text-[#163b8c]">SPEGACONNECT</span>
+        </div>
+        <button @click="mobileMenuOpen = false" class="p-1 rounded-xl text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick role switcher in mobile drawer -->
+      <div class="p-4 mx-4 mt-4 rounded-xl bg-blue-50 border border-blue-100 text-xs">
+        <span class="font-bold block mb-1 text-blue-900">Ubah Akun Pengujian:</span>
+        <select id="select-test-user-mobile" class="w-full h-8 px-2 rounded-lg border border-blue-200 text-xs bg-white">
+          <option value="usr-alumni-01">Dimas (Alumni Terverifikasi)</option>
+          <option value="usr-alumni-03">Rizky (Alumni Menunggu)</option>
+          <option value="usr-admin-01">Bambang (Admin Pengelola)</option>
+        </select>
+      </div>
+
+      <div class="flex-1 px-4 py-4 space-y-1 overflow-y-auto" id="mobile-drawer-nav">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="p-4 border-t border-slate-100 space-y-2">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-600">
+          <i data-lucide="globe" class="w-4 h-4"></i>
+          <span>Halaman Publik Website</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION SCRIPTS (ES MODULES) -->
+  <script type="module">
+    import { MockDB } from './js/mock-data.js';
+    import { Router } from './js/router.js';
+    import { renderAvatar, Toast } from './js/components.js';
+
+    // Update Shell Header and Sidebar Navigation
+    function refreshAppShell() {
+      const { user, profile } = MockDB.getCurrentUser();
+      const db = MockDB.getData();
+      const isAdmin = user.role === 'ADMIN';
+
+      // Header info
+      const nameElem = document.getElementById('header-user-name');
+      const roleElem = document.getElementById('header-user-role');
+      const dropdownName = document.getElementById('dropdown-user-name');
+      const dropdownEmail = document.getElementById('dropdown-user-email');
+      const avatarSlot = document.getElementById('header-avatar-slot');
+      const roleBadge = document.getElementById('sidebar-role-badge');
+      const unreadBadge = document.getElementById('header-unread-badge');
+
+      if (nameElem) nameElem.textContent = user.nama;
+      if (roleElem) roleElem.textContent = isAdmin ? 'Pengelola / Admin' : 'Alumni';
+      if (dropdownName) dropdownName.textContent = user.nama;
+      if (dropdownEmail) dropdownEmail.textContent = user.email;
+      if (roleBadge) {
+        roleBadge.textContent = isAdmin ? 'Admin' : 'Alumni';
+        roleBadge.className = `px-2 py-0.5 rounded-full text-[10px] font-bold ${isAdmin ? 'bg-purple-600 text-white' : 'bg-[#163b8c] text-white'}`;
+      }
+
+      if (avatarSlot) {
+        avatarSlot.innerHTML = renderAvatar(profile?.namaLengkap || user.nama, profile?.fotoFileId, 'sm');
+      }
+
+      // Unread count
+      const unreadCount = db.Notifications.filter(n => n.userId === user.id && !n.dibaca).length;
+      if (unreadBadge) {
+        if (unreadCount > 0) {
+          unreadBadge.textContent = unreadCount;
+          unreadBadge.style.display = 'flex';
+        } else {
+          unreadBadge.style.display = 'none';
+        }
+      }
+
+      // Sync Switcher Dropdowns
+      const selDesktop = document.getElementById('select-test-user');
+      const selMobile = document.getElementById('select-test-user-mobile');
+      if (selDesktop) selDesktop.value = user.id;
+      if (selMobile) selMobile.value = user.id;
+
+      // Render Sidebar Navigation
+      const navContainer = document.getElementById('sidebar-nav-container');
+      const drawerContainer = document.getElementById('mobile-drawer-nav');
+      const bottomNav = document.getElementById('mobile-bottom-nav');
+
+      let navLinks = [];
+
+      if (!isAdmin) {
+        navLinks = [
+          { route: '#/dashboard', icon: 'layout-dashboard', text: 'Dasbor Alumni' },
+          { route: '#/alumni', icon: 'users', text: 'Direktori Alumni' },
+          { route: '#/profil', icon: 'user-check', text: 'Profil & Verifikasi' },
+          { route: '#/lowongan', icon: 'briefcase', text: 'Bursa Lowongan' },
+          { route: '#/donasi', icon: 'heart-handshake', text: 'Donasi Beasiswa' },
+          { route: '#/notifikasi', icon: 'bell', text: 'Pemberitahuan' },
+          { route: '#/pengaturan', icon: 'settings', text: 'Pengaturan Akun' }
+        ];
+      } else {
+        navLinks = [
+          { route: '#/admin/dashboard', icon: 'bar-chart-3', text: 'Dasbor Pengelola' },
+          { route: '#/admin/alumni', icon: 'shield-check', text: 'Verifikasi Ijazah' },
+          { route: '#/admin/lowongan', icon: 'briefcase', text: 'Moderasi Lowongan' },
+          { route: '#/admin/angkatan-jurusan', icon: 'layers', text: 'Angkatan & Jurusan' },
+          { route: '#/admin/donasi', icon: 'heart', text: 'Donasi & Beasiswa' },
+          { route: '#/admin/galeri', icon: 'image', text: 'Kelola Galeri' },
+          { route: '#/admin/pengguna', icon: 'shield', text: 'Kelola Pengguna' },
+          { route: '#/dashboard', icon: 'arrow-left', text: 'Area Alumni (Pratinjau)' }
+        ];
+      }
+
+      const buildNavHtml = (links) => links.map(item => `
+        <a href="${item.route}" data-route="${item.route}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
+          <i data-lucide="${item.icon}" class="w-4 h-4 shrink-0"></i>
+          <span>${item.text}</span>
+        </a>
+      `).join('');
+
+      if (navContainer) navContainer.innerHTML = buildNavHtml(navLinks);
+      if (drawerContainer) drawerContainer.innerHTML = buildNavHtml(navLinks);
+
+      // Render Mobile Bottom Nav (5 Primary Items)
+      if (bottomNav) {
+        const bottomLinks = !isAdmin ? [
+          { route: '#/dashboard', icon: 'layout-dashboard', label: 'Dasbor' },
+          { route: '#/alumni', icon: 'users', label: 'Alumni' },
+          { route: '#/lowongan', icon: 'briefcase', label: 'Karir' },
+          { route: '#/donasi', icon: 'heart', label: 'Donasi' },
+          { route: '#/profil', icon: 'user', label: 'Profil' }
+        ] : [
+          { route: '#/admin/dashboard', icon: 'bar-chart-3', label: 'Dasbor' },
+          { route: '#/admin/alumni', icon: 'shield-check', label: 'Verifikasi' },
+          { route: '#/admin/lowongan', icon: 'briefcase', label: 'Lowongan' },
+          { route: '#/admin/donasi', icon: 'heart', label: 'Donasi' },
+          { route: '#/admin/pengguna', icon: 'shield', label: 'Pengguna' }
+        ];
+
+        bottomNav.innerHTML = bottomLinks.map(b => `
+          <a href="${b.route}" data-route="${b.route}" class="flex flex-col items-center justify-center text-slate-500 hover:text-[#163b8c] text-[10px] font-semibold py-1">
+            <i data-lucide="${b.icon}" class="w-5 h-5 mb-0.5"></i>
+            <span>${b.label}</span>
+          </a>
+        `).join('');
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    // Role Switcher Handler
+    function handleSwitchUser(e) {
+      const selectedId = e.target.value;
+      MockDB.setCurrentUserId(selectedId);
+      const { user } = MockDB.getCurrentUser();
+      Toast.show(`Beralih akun ke: ${user.nama} (${user.role})`, 'success');
+      refreshAppShell();
+      if (user.role === 'ADMIN') {
+        window.location.hash = '#/admin/dashboard';
+      } else {
+        window.location.hash = '#/dashboard';
+      }
+    }
+
+    document.getElementById('select-test-user')?.addEventListener('change', handleSwitchUser);
+    document.getElementById('select-test-user-mobile')?.addEventListener('change', handleSwitchUser);
+
+    // Initial Start
+    refreshAppShell();
+    Router.init();
+  </script>
+</body>
+</html>

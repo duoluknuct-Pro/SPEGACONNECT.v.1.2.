@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program Beasiswa Almamater - SPEGACONNECT</title>
+  <meta name="description" content="Salurkan donasi beasiswa SPP dan fasilitas belajar untuk adik-adik kelas berprestasi di almamater secara transparan.">
+  <link rel="canonical" href="https://username.github.io/spega-connect/beasiswa.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: 'hsl(221, 72%, 32%)',
+              gold: 'hsl(43, 96%, 56%)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="flex flex-col min-h-screen bg-[#fdfdfd] text-slate-800" x-data="{ mobileNav: false }">
+
+  <!-- Header Publik -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-[#163b8c] text-white flex items-center justify-center font-bold shadow-md shadow-blue-900/10">
+          <i data-lucide="graduation-cap" class="w-7 h-7 text-[#f8af26]"></i>
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight text-[#163b8c] font-heading block leading-tight">SPEGACONNECT</span>
+          <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider block">Jejaring Resmi Alumni</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="index.html" class="hover:text-[#163b8c] transition-colors">Beranda</a>
+        <a href="tentang.html" class="hover:text-[#163b8c] transition-colors">Tentang Kami</a>
+        <a href="galeri.html" class="hover:text-[#163b8c] transition-colors">Galeri Kegiatan</a>
+        <a href="beasiswa.html" class="text-[#163b8c] font-bold">Program Beasiswa</a>
+        <a href="kontak.html" class="hover:text-[#163b8c] transition-colors">Kontak</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="app.html#/masuk" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-semibold shadow-xs">
+          Masuk Akun
+        </a>
+        <a href="app.html#/daftar" class="px-5 py-2.5 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-xs font-bold shadow-xs">
+          Gabung Alumni
+        </a>
+      </div>
+
+      <button @click="mobileNav = !mobileNav" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <div x-show="mobileNav" class="md:hidden bg-white border-b border-slate-200 px-6 py-5 space-y-4 shadow-lg animate-fade-in" style="display: none;">
+      <div class="flex flex-col space-y-3 text-sm font-semibold text-slate-700">
+        <a href="index.html">Beranda</a>
+        <a href="tentang.html">Tentang Kami</a>
+        <a href="galeri.html">Galeri Kegiatan</a>
+        <a href="beasiswa.html" class="text-[#163b8c]">Program Beasiswa</a>
+        <a href="kontak.html">Kontak</a>
+      </div>
+      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+        <a href="app.html#/masuk" class="w-full py-2.5 rounded-xl border border-slate-200 text-center text-xs font-semibold text-slate-700">Masuk Akun</a>
+        <a href="app.html#/daftar" class="w-full py-2.5 rounded-xl bg-[#163b8c] text-center text-xs font-bold text-white">Gabung Alumni</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 py-16 space-y-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold">
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i>
+          <span>Dana Abadi Almamater</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold font-heading text-slate-900">Program Beasiswa Aktif</h1>
+        <p class="text-sm text-slate-500">Setiap rupiah yang Anda donasikan dicatat secara transparan dan disalurkan tepat sasaran kepada siswa yang membutuhkan.</p>
+      </div>
+
+      <!-- Kampanye List -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Kampanye 1 -->
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col justify-between">
+          <div class="h-52 overflow-hidden bg-slate-100 relative">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80" alt="Beasiswa SPP Adik Kelas" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs">
+              AKTIF
+            </span>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-5 flex-1 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="text-xs text-slate-400 font-semibold block">Batas Waktu: 31 Desember 2026</span>
+              <h2 class="text-xl font-bold font-heading text-slate-900">Beasiswa SPP & Perlengkapan Adik Kelas 2026</h2>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Penggalangan dana donasi alumni untuk mendukung SPP, buku pegangan, dan seragam sekolah adik-adik kelas yang berprestasi namun menghadapi kendala ekonomi keluarga.
+              </p>
+            </div>
+
+            <div class="space-y-3 pt-3 border-t border-slate-100">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-slate-800">Terkumpul: Rp 18.750.000</span>
+                <span class="text-slate-500">Target: Rp 50.000.000 (37%)</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                <div class="bg-emerald-500 h-full rounded-full" style="width: 37%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-slate-400">
+                <span>38 Donatur Terverifikasi</span>
+                <span>Sisa 64 Hari</span>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="app.html#/donasi" class="w-full py-3.5 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-xs">
+                <i data-lucide="heart" class="w-4 h-4 text-rose-300"></i>
+                <span>Salurkan Donasi ke Program Ini</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kampanye 2 -->
+        <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col justify-between">
+          <div class="h-52 overflow-hidden bg-slate-100 relative">
+            <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&auto=format&fit=crop&q=80" alt="Alat Praktik Lab" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-xs">
+              AKTIF
+            </span>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-5 flex-1 flex flex-col justify-between">
+            <div class="space-y-2.5">
+              <span class="text-xs text-slate-400 font-semibold block">Batas Waktu: 30 November 2026</span>
+              <h2 class="text-xl font-bold font-heading text-slate-900">Dana Pengadaan Alat Praktik Lab RPL & Elektro</h2>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Program revitalisasi fasilitas laboratorium almamater meliputi kit mikrokontroler, modul jaringan komputer, dan komponen elektronika agar adik kelas siap bersaing di industri teknologi modern.
+              </p>
+            </div>
+
+            <div class="space-y-3 pt-3 border-t border-slate-100">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-slate-800">Terkumpul: Rp 9.400.000</span>
+                <span class="text-slate-500">Target: Rp 25.000.000 (38%)</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                <div class="bg-emerald-500 h-full rounded-full" style="width: 38%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-slate-400">
+                <span>19 Donatur Terverifikasi</span>
+                <span>Sisa 33 Hari</span>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="app.html#/donasi" class="w-full py-3.5 rounded-xl bg-[#163b8c] hover:bg-[#123072] text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-xs">
+                <i data-lucide="heart" class="w-4 h-4 text-rose-300"></i>
+                <span>Salurkan Donasi ke Program Ini</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Singkat Donasi -->
+      <div class="bg-slate-50/80 p-8 rounded-3xl border border-slate-100 space-y-4">
+        <h3 class="text-base font-bold font-heading text-slate-900">Cara Kerja & Transparansi Donasi:</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-600 leading-relaxed">
+          <div class="space-y-1">
+            <span class="font-bold text-slate-800 block">1. Transfer Bank Manual</span>
+            <p>Pengguna memilih nominal donasi dan mentransfer ke rekening resmi yayasan dengan 3 digit kode unik.</p>
+          </div>
+          <div class="space-y-1">
+            <span class="font-bold text-slate-800 block">2. Unggah Bukti Bayar</span>
+            <p>Unggah struk atau screenshot pembayaran secara aman untuk diverifikasi oleh bendahara alumni.</p>
+          </div>
+          <div class="space-y-1">
+            <span class="font-bold text-slate-800 block">3. Laporan Berkala</span>
+            <p>Laporan pencairan dan penerima manfaat diumumkan terbuka di halaman ini dan notifikasi aplikasi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Publik -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs text-center">
+    <p>&copy; 2026 Ikatan Alumni SPEGACONNECT. Hak cipta dilindungi undang-undang.</p>
+  </footer>
+
+  <script>
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>
