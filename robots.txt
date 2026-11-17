@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /app.html
-
-Sitemap: https://github.com/duoluknuct-Pro/SPEGACONNECT.v.1.2./sitemap.xml
